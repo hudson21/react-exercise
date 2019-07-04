@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { userActions } from '../actions';
 
 export class LoginPage extends Component {
+
     constructor(props) {
         super(props);
 
@@ -22,6 +23,7 @@ export class LoginPage extends Component {
     }
 
     handleChange(e) {
+        
     }
 
     handleSubmit(e) {
