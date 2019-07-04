@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, Route, Switch, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
 import { alertActions } from './actions';
@@ -13,7 +12,7 @@ export class App extends React.Component {
         super(props);
 
         const { dispatch } = this.props;
-        history.listen((location, action) => {
+            history.listen((location, action) => {
         });
     }
 
@@ -23,13 +22,7 @@ export class App extends React.Component {
         return(
             <Switch>
                 <Route exact path="/" component={HomePage}/>
-                <Route  path="/login" component={() => (
-                    <div className="container">
-                        <div className="col-sm-8 col-sm-offset-2">
-                            <LoginPage />
-                        </div>
-                    </div>
-                )}/>    
+                <Route  path="/login" component={LoginPage}/>    
                 <Route path="/register" component={RegisterPage}/>
             </Switch>
         );
@@ -42,5 +35,7 @@ function mapStateToProps(state) {
         alert
     };
 }
+
+
 
 //HOST=0.0.0.0 PORT=8000 ./node_modules/.bin/react-scripts start (package.json)

@@ -9,22 +9,31 @@ import { store } from './helpers';
 import { configureFakeAPI } from './helpers';
 
 //Redux
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 
 //Reducer
 import rootReducer from './reducers';
+
+//Actions
+import { success, error, clear, login, logout, register } from './actions';
 
 //Components
 import { App } from './App';
 
 configureFakeAPI();
 
-const RootComponent = withRouter(App);
+const mapStateToProps = (state) => ({
+    authentication: state.authentication,
+    registration: state.registration,
+    alert: state.aler,
+});
+
+const RootComponent = withRouter(connect(mapStateToProps, { ,  })(App));
 
 render(
 <Provider store={store}>
     <Router>
-        <App />
+        <RootComponent />
     </Router>
 </Provider>,
 
