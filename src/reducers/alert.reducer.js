@@ -13,7 +13,10 @@ export function alert(state = {}, action) {
         message: action.message
       };
     case alertConstants.CLEAR:
-      return {};
+      return {
+        type: 'alert-clear',
+        message: action.message
+      };
     default:
       return state
   }

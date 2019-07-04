@@ -1,6 +1,6 @@
 import { userConstants } from '../constants';
 import { userService } from '../services';
-import { alertActions } from './';
+import { successAlert, errorAlert, clearAlert } from './alert.actions';
 import { history } from '../helpers';
 
 
@@ -12,12 +12,10 @@ export function login(username, password) {
     }
     
     return(dispatch) => {
-        fetch(`/users/authenticate`, {  
-            method: 'POST',
-            body: JSON.stringify(user)  
-        })
+        userService.login(username, password)
         .then(response => {
             dispatch(request(user));
+            dispatch()
             return response;
         })
         .then((response) => {
@@ -28,6 +26,7 @@ export function login(username, password) {
         .catch(err => {
             console.log(err);
             dispatch(failure(err));
+            dispatch(errorAlert(err));
         });
     }
     //console.log(username, password);
@@ -45,21 +44,20 @@ export function register(user) {
     // return the promise using fetch which dispatches appropriately
 
     return(dispatch) => {
-        fetch(`/users/register`, {  
-            method: 'POST',
-            body: JSON.stringify(user)  
-        })
+        userService.register(user)
         .then(response => {
+            console.log("register", response);
             dispatch(request(user));
             return response;
         })
         .then((response) => {
-            console.log(response);
             dispatch(success(user));
+            dispatch(successAlert('Registration Successful'));
         })
         .catch(err => {
             console.log(err);
             dispatch(failure(err));
+            dispatch(errorAlert(err));
         });
     }
 
