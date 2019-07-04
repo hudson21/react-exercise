@@ -3,54 +3,69 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions } from '../actions';
+import { register } from '../actions';
 
-export class RegisterPage extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            user: {
-                username: '',
-                password: ''
-            },
-            submitted: false
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+class RegisterPage extends Component {
+    
+    state = {
+        username: '',
+        password: '',
+        submitted: false
     }
 
-    handleChange(event) {
+    handleChange = (e) => {
         // handle input change and dispatch register
+        this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSubmit(event) {
+    handleSubmit = (e) => {
+        e.preventDefault();
         // handle button click and dispatch register
+        this.setState({ submitted: true });
+        const { username, password, submitted } = this.state;
+        const user = {
+            username,
+            password
+        }
+        if (username && password) {
+            this.props.register(user);
+        }
     }
 
     render() {
-        const { user, submitted } = this.state;
+        const { username, password, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Register</h2>
-                <form name="form">
-                    <div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
+                <form name="form" onSubmit={this.handleSubmit}>
+                    <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control username" name="username" />
-                        {submitted && !user.username &&
+                        <input 
+                            type="text" 
+                            className="form-control username" 
+                            name="username"
+                            value={username}
+                            onChange={this.handleChange} 
+                        />
+                        {submitted && !username &&
                             <div className="help-block">Username is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password"/>
-                        {submitted && !user.password &&
+                        <input 
+                            type="password" 
+                            className="form-control" 
+                            name="password"
+                            value={password}
+                            onChange={this.handleChange}
+                        />
+                        {submitted && !password &&
                             <div className="help-block">Password is required</div>
                         }
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-primary">Register</button>
+                        <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button>
                         <Link to="/login" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
@@ -60,8 +75,9 @@ export class RegisterPage extends Component {
 }
 
 // complete the below function
-function mapStateToProps(state) {
-    
-}
+const mapStateToProps = (state) => ({
+    registration: state.registration,
+})
 
-export { RegisterPage as TestRegisterPage };
+export default connect(mapStateToProps, { register })(RegisterPage);
+//export { RegisterPage as TestRegisterPage };

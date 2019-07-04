@@ -1,41 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
 //Actions
 import { login } from '../actions';
 
 class LoginPage extends Component {
 
-    constructor(props) {
-        super(props);
-
-        // reset login status
-        this.state = {
-            username: '',
-            password: '',
-            submitted: false
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    state = {
+        username: '',
+        password: '',
+        submitted: false,
     }
 
-    handleChange(e) {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.loggedIn) {
+            this.props.history.push('/');
+        }
+    }
+    
+    handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
-        const { username, password } = this.state;
-        this.props.login(username,password);
+        const { username, password, submitted } = this.state;
+        this.setState({ submitted: true });
         
+        if (username && password) {
+            this.props.login(username,password);
+        }
     }
 
     render() {
         const { username, password, submitted } = this.state;
         return (
             <div className="container">
+                
                 <div className="col-sm-8 col-sm-offset-2">
                     <div className="col-md-6 col-md-offset-3">
                         <h2>Login</h2>
@@ -78,15 +80,10 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    authentication: state.authentication,
+    loggedIn: state.authentication.loggedIn,
 });
 
-const maptDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        login
-    }, dispatch)
-};
 
-connect(mapStateToProps, maptDispatchToProps )(LoginPage);
+export default connect(mapStateToProps, { login })(LoginPage);
 
-export { LoginPage as TestLoginPage };
+//export { LoginPage as TestLoginPage };

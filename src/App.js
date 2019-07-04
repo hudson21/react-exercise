@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
 import { alertActions } from './actions';
 
 //Components
-import { HomePage } from './components/HomePage';
-import { LoginPage } from './components/LoginPage';
-import { RegisterPage } from './components/RegisterPage';
+import  HomePage  from './components/HomePage';
+import  LoginPage  from './components/LoginPage';
+import  RegisterPage  from './components/RegisterPage';
 
-export class App extends React.Component {
+export class App extends Component {
     constructor(props) {
         super(props);
 
