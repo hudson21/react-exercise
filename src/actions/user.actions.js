@@ -3,8 +3,13 @@ import { userService } from '../services';
 import { successAlert, errorAlert, clearAlert } from './alert.actions';
 import { history } from '../helpers';
 
+export {
+    login,
+    register,
+    logout
+}
 
-export function login(username, password) {
+function login(username, password) {
     // return the promise using fetch which adds to localstorage on resolve
     const user = {
         username,
@@ -15,7 +20,6 @@ export function login(username, password) {
         userService.login(username, password)
         .then(response => {
             dispatch(request(user));
-            dispatch()
             return response;
         })
         .then((response) => {
@@ -36,11 +40,11 @@ export function login(username, password) {
 
 }
 
-export function logout() {
+function logout() {
     // complete this function
 }
 
-export function register(user) {
+function register(user) {
     // return the promise using fetch which dispatches appropriately
 
     return(dispatch) => {

@@ -40,7 +40,7 @@ export function configureFakeAPI() {
                     users.push(newUser);
                     localStorage.setItem('users', JSON.stringify(users));
 
-                    resolve({ ok: true, json: () => ({}) });
+                    resolve({ ok: true, json: () => ({ }) });
 
                     return;
                 }
