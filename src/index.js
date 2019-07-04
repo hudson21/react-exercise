@@ -14,8 +14,6 @@ import { Provider, connect } from 'react-redux';
 //Reducer
 import rootReducer from './reducers';
 
-//Actions
-import { success, error, clear, login, logout, register } from './actions';
 
 //Components
 import { App } from './App';
@@ -25,15 +23,15 @@ configureFakeAPI();
 const mapStateToProps = (state) => ({
     authentication: state.authentication,
     registration: state.registration,
-    alert: state.aler,
+    alert: state.alert,
 });
 
-const RootComponent = withRouter(connect(mapStateToProps, { ,  })(App));
+const RootComponent = withRouter(connect(mapStateToProps, null)(App));
 
 render(
 <Provider store={store}>
     <Router>
-        <RootComponent />
+        <RootComponent /> 
     </Router>
 </Provider>,
 
