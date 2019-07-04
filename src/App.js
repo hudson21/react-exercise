@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
 import { alertActions } from './actions';
@@ -23,13 +23,17 @@ export class App extends Component {
         const { alert } = this.props;
 
         return(
-            <Switch>
-                <PrivateRoute exact path="/" component={HomePage}/>
-                <Route  path="/login" component={TestLoginPage}/>    
-                <Route path="/register" component={TestLoginPage}/>
-            </Switch>
+            <Router>
+                <Switch>
+                    <PrivateRoute exact path="/" component={HomePage}/>
+                    <Route path="/login" component={TestLoginPage}/>    
+                    <Route path="/register" component={TestRegisterPage}/>
+                </Switch>
+            </Router>
+            
         );
     }
 }
+
 
 //HOST=0.0.0.0 PORT=8000 ./node_modules/.bin/react-scripts start (package.json)

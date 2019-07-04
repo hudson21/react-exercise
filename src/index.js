@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, withRouter } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import { render } from 'react-dom';
 
 //Helpers
@@ -16,7 +16,7 @@ import rootReducer from './reducers';
 
 
 //Components
-import { App } from './App';
+import  { App }  from './App';
 
 configureFakeAPI();
 
@@ -26,13 +26,11 @@ const mapStateToProps = (state) => ({
     alert: state.alert,
 });
 
-const RootComponent = withRouter(connect(mapStateToProps, null)(App));
+const RootComponent = connect(mapStateToProps, null)(App);
 
 render(
 <Provider store={store}>
-    <Router>
         <RootComponent /> 
-    </Router>
 </Provider>,
 
 document.getElementById('app')
