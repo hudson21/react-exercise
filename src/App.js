@@ -5,9 +5,9 @@ import { history } from './helpers';
 import { alertActions } from './actions';
 
 //Components
-import  HomePage  from './components/HomePage';
-import  LoginPage  from './components/LoginPage';
-import  RegisterPage  from './components/RegisterPage';
+import  {HomePage}  from './components/HomePage';
+import  {TestLoginPage}  from './components/LoginPage';
+import  {TestRegisterPage}  from './components/RegisterPage';
 
 export class App extends Component {
     constructor(props) {
@@ -25,8 +25,8 @@ export class App extends Component {
         return(
             <Switch>
                 <PrivateRoute exact path="/" component={HomePage}/>
-                <Route  path="/login" component={LoginPage}/>    
-                <Route path="/register" component={RegisterPage}/>
+                <Route  path="/login" component={TestLoginPage}/>    
+                <Route path="/register" component={TestLoginPage}/>
             </Switch>
         );
     }

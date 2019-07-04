@@ -84,6 +84,6 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps, { login })(LoginPage);
+const ReduxLogin = connect(mapStateToProps, { login })(LoginPage);
 
-//export { LoginPage as TestLoginPage };
+export { ReduxLogin as TestLoginPage };

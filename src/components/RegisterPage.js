@@ -8,8 +8,10 @@ import { register } from '../actions';
 class RegisterPage extends Component {
     
     state = {
-        username: '',
-        password: '',
+        user : {
+            username: '',
+            password: '',
+        },
         submitted: false
     }
 
@@ -79,5 +81,6 @@ const mapStateToProps = (state) => ({
     registration: state.registration,
 })
 
-export default connect(mapStateToProps, { register })(RegisterPage);
-//export { RegisterPage as TestRegisterPage };
+const ReduxRegister = connect(mapStateToProps, { register })(RegisterPage);
+
+export { ReduxRegister as TestRegisterPage };

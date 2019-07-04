@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class HomePage extends Component {
+export class HomePage extends Component {
 
     render() {
         return (
@@ -15,4 +15,3 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
