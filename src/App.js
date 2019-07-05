@@ -30,7 +30,7 @@ class App extends Component {
         const { alert } = this.props;
 
         return(
-            <Notifications type={alert.type} message={alert.message}>
+            <Notifications  alert={alert}>
                 <Router history={history}>
                     <Switch>
                         <PrivateRoute exact path="/" component={HomePage}/>

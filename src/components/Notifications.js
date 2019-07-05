@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Notifications = ({ type, message, children }) => {
+const Notifications = ({ alert, children }) => {
     return(
         <div className="container">
-            {type && (type === 'alert-success' || type === 'alert-danger') && 
+            {alert.type && (alert.type === 'alert-success' || alert.type === 'alert-danger') && 
             <div style={{marginTop: '40px'}}>
-                <div className={`alert ${type}`}>{message}</div>
+                <div className={`alert ${alert.type}`}>{alert.message}</div>
             </div>}
             {children}
         </div>
