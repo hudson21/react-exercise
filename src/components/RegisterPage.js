@@ -48,10 +48,9 @@ class RegisterPage extends Component {
 
     render() {
         const { user, submitted } = this.state;
-        const { type, message } = this.props.alert;
         return (
             <div className="container">
-                {type && message && <Notifications type={type} message={message} />}
+                {this.props.alert.type && this.props.alert.message && <Notifications type={type} message={message} />}
                 <div className="col-md-6 col-md-offset-3">
                     <h2>Register</h2>
                     <form name="form" onSubmit={this.handleSubmit}>

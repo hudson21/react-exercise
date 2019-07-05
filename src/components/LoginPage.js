@@ -44,11 +44,10 @@ class LoginPage extends Component {
 
     render() {
         const { username, password, submitted } = this.state;
-        const { type, message } = this.props.alert;
 
         return (
             <div className="container">
-                {type && message && <Notifications type={type} message={message} />}
+                {this.props.alert.type && this.props.alert.message && <Notifications type={type} message={message} />}
 
                 <div className="col-sm-8 col-sm-offset-2">
                     <div className="col-md-6 col-md-offset-3">
