@@ -11,14 +11,14 @@ import { configureFakeAPI } from './helpers';
 import { Provider } from 'react-redux';
 
 //Components
-import { ReduxApp } from './App';
+import { App } from './App';
 
 configureFakeAPI();
 
 
 render(
 <Provider store={store}>
-        <ReduxApp /> 
+        <App /> 
 </Provider>,
 
 document.getElementById('app')

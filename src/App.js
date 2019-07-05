@@ -58,8 +58,10 @@ const mapDispatchToProps = (dispatch) =>{
     },dispatch) 
 }
 
-const ReduxApp = connect(mapStateToProps, mapDispatchToProps)(App);
+App = connect(mapStateToProps, mapDispatchToProps)(App);
 
-export { ReduxApp };
+export { App };
+
+
 
 //HOST=0.0.0.0 PORT=8000 ./node_modules/.bin/react-scripts start (package.json)
