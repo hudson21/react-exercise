@@ -13,10 +13,6 @@ class LoginPage extends Component {
         password: '',
         submitted: false,
     }
-
-    displayNotifications = (type, message) =>{
-        this.setState({ type, message });
-    };
     
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -24,13 +20,12 @@ class LoginPage extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { username, password, type, message } = this.state;
+        const { username, password } = this.state;
         this.setState({ submitted: true });
         
         if (username && password) {
             this.props.login(username,password);
         }
-        this.displayNotifications(type, message)
     }
 
 
