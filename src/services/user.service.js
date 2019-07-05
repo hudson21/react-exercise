@@ -38,5 +38,5 @@ function handleResponse(response) {
         return Promise.reject(response.statusText);
     }
 
-    return response.json();
+    return Promise.resolve(response.json());
 }
