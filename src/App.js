@@ -26,7 +26,7 @@ class App extends Component {
 
         return(
             <Notifications>
-                <Router history={history} children={this.props.children}>
+                <Router history={history}>
                     <Switch>
                         <PrivateRoute exact path="/" component={HomePage}/>
                         <Route path="/login" component={TestLoginPage}/>    
