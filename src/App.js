@@ -18,16 +18,19 @@ class App extends Component {
     }
 
     componentDidMount() {
-        history.listen((location, action) => { 
+        history.listen((location, action) => {
+            if (location.pathname === '/register') {
+                this.props.clear();
+            }
             return <Redirect to={location}/>
         });
     }
 
     render() {
-        const { alert } = this.props;
+        const { type, message } = this.props.alert;
 
         return(
-            <Notifications>
+            <Notifications type={type} message={message}>
                 <Router history={history}>
                     <Switch>
                         <PrivateRoute exact path="/" component={HomePage}/>

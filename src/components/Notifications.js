@@ -1,16 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-const Notifiactions = ({ type, message, children }) => {
+const Notifications = ({ type, message, children }) => {
     return(
-        <Fragment>
-            {(type === 'alert-success' || type === 'alert-danger') && 
-        <div style={{marginTop: '40px'}}>
-            <div className={`alert ${type}`}>{message}</div>
-        </div>}
+        <div className="container">
+            {type && (type === 'alert-success' || type === 'alert-danger') && 
+            <div style={{marginTop: '40px'}}>
+                <div className={`alert ${type}`}>{message}</div>
+            </div>}
             {children}
-        </Fragment>
+        </div>
         
     );
 };
 
-export default Notifiactions ;
+export default Notifications ;
