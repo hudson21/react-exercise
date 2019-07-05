@@ -28,12 +28,14 @@ class App extends Component {
 
         return(
             <Notifications>
+                <Router>
                     <Switch>
                         <PrivateRoute exact path="/" component={HomePage}/>
                         <Route path="/login" component={TestLoginPage}/>    
                         <Route path="/register" component={TestRegisterPage}/>
                         <Route path="/logout" component={Logout}/>
                     </Switch>
+                </Router>
             </Notifications>
         );
     }
