@@ -12,13 +12,19 @@ class RegisterPage extends Component {
             username: '',
             password: '',
         },
-        submitted: false
+        submitted: false,
+        type: this.props.type,
+        message: this.props.message
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.type === 'alert-success') {
             this.props.history.push('/login');
         }
+    }
+
+    componentWillUnmount() {
+        this.setState({type: '', message: ''});
     }
 
     handleChange = (e) => {

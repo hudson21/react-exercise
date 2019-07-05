@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 //Actions
 import { login } from '../actions';
+import Notifications from './Notifications';
 
 class LoginPage extends Component {
 
@@ -18,6 +19,11 @@ class LoginPage extends Component {
             this.props.history.push('/');
         }
     }
+
+
+    displayNotifications = (type, message) =>{
+        this.setState({ type, message });
+    };
     
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -25,19 +31,24 @@ class LoginPage extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { username, password, submitted } = this.state;
+        const { username, password, type, message } = this.state;
         this.setState({ submitted: true });
         
         if (username && password) {
             this.props.login(username,password);
         }
+        this.displayNotifications(type, message)
     }
+
 
     render() {
         const { username, password, submitted } = this.state;
+        const { type, message } = this.props;
+
         return (
             <div className="container">
-                
+                {type && message && <Notifications type={type} message={message} />}
+
                 <div className="col-sm-8 col-sm-offset-2">
                     <div className="col-md-6 col-md-offset-3">
                         <h2>Login</h2>
@@ -81,6 +92,8 @@ class LoginPage extends Component {
 
 const mapStateToProps = (state) => ({
     loggedIn: state.authentication.loggedIn,
+    type: state.alert.type,
+    message: state.alert.message
 });
 
 

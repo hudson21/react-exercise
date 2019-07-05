@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Notifiactions = () => {
+const Notifiactions = ({ type, message }) => {
     return(
         <div style={{marginTop: '40px'}}>
-            <div class="alert alert-success">Success</div>
+            <div className={`alert ${type}`}>{message}</div>
         </div>
     );
 };
+
+export default Notifiactions;
