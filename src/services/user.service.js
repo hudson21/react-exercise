@@ -10,13 +10,10 @@ function login(username, password) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
     };
-    const user = {
-        username,
-        password
-    }
+
     // call `/users/authenticate` with requestOptions to authenticate the login process
     return fetch('/users/authenticate', requestOptions)
-    .then(()=> localStorage.setItem('user', JSON.stringify(user)));
+    .then(()=> localStorage.setItem('user', JSON.stringify({username, password})));
     
 }
 
