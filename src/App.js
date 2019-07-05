@@ -27,10 +27,10 @@ class App extends Component {
     }
 
     render() {
-        const { type, message } = this.props.alert;
+        const { alert } = this.props;
 
         return(
-            <Notifications type={type} message={message}>
+            <Notifications type={alert.type} message={alert.message}>
                 <Router history={history}>
                     <Switch>
                         <PrivateRoute exact path="/" component={HomePage}/>
