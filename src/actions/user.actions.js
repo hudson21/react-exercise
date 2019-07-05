@@ -11,25 +11,16 @@ export const userActions = {
 
 function login(username, password) {
     // return the promise using fetch which adds to localstorage on resolve
-    const user = {
-        username,
-        password
-    }
     
     return(dispatch) => {
         userService.login(username, password)
-        .then(response => {
+        .then(user => {
+            localStorage.setItem('user', JSON.stringify(user));
             dispatch(request(user));
-            return response;
-        })
-        .then((response) => {
-            console.log(response);
-            localStorage.setItem('user', response.json);
             dispatch(success(user));
             history.push('/');
         })
         .catch(err => {
-            console.log(err);
             dispatch(failure(err));
             dispatch(alertActions.error(err));
         });
@@ -54,11 +45,7 @@ function register(user) {
     return(dispatch) => {
         userService.register(user)
         .then(response => {
-            console.log("register", response);
             dispatch(request(user));
-            return response;
-        })
-        .then((response) => {
             dispatch(success(user));
             dispatch(alertActions.success('Registration Successful'));
             history.push('/login');
