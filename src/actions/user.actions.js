@@ -15,7 +15,6 @@ function login(username, password) {
     return(dispatch) => {
         userService.login(username, password)
         .then(user => {
-            localStorage.setItem('user', JSON.stringify(user));
             dispatch(request(user));
             dispatch(success(user));
             history.push('/');

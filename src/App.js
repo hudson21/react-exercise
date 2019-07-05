@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Router} from 'react-router-dom';
+import { Route, Switch, Router, Redirect} from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
 
