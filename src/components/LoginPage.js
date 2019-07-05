@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 //Actions
-import { login } from '../actions';
-import Notifications from './Notifications';
+import { userActions } from '../actions';
 
 class LoginPage extends Component {
 
@@ -14,13 +13,6 @@ class LoginPage extends Component {
         password: '',
         submitted: false,
     }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.authentication.loggedIn) {
-            this.props.history.push('/');
-        }
-    }
-
 
     displayNotifications = (type, message) =>{
         this.setState({ type, message });
@@ -47,8 +39,6 @@ class LoginPage extends Component {
 
         return (
             <div className="container">
-                {this.props.alert.type && this.props.alert.message && <Notifications type={type} message={message} />}
-
                 <div className="col-sm-8 col-sm-offset-2">
                     <div className="col-md-6 col-md-offset-3">
                         <h2>Login</h2>
@@ -99,7 +89,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>{
     return bindActionCreators(
     {
-        login
+        login: userActions.login
     },dispatch) 
 }
 

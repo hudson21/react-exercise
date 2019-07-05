@@ -2,11 +2,9 @@ import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { register } from '../actions';
-
-//Components
-import Notifications from './Notifications';
+import { userActions } from '../actions';
 
 class RegisterPage extends Component {
     
@@ -16,12 +14,6 @@ class RegisterPage extends Component {
             password: '',
         },
         submitted: false
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.type === 'alert-success') {
-            this.props.history.push('/login');
-        }
     }
 
     componentWillUnmount() {
@@ -50,7 +42,6 @@ class RegisterPage extends Component {
         const { user, submitted } = this.state;
         return (
             <div className="container">
-                {this.props.alert.type && this.props.alert.message && <Notifications type={type} message={message} />}
                 <div className="col-md-6 col-md-offset-3">
                     <h2>Register</h2>
                     <form name="form" onSubmit={this.handleSubmit}>
@@ -101,7 +92,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>{
     return bindActionCreators(
     {
-        register
+        register: userActions.register
     },dispatch) 
 }
 

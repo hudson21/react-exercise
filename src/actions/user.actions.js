@@ -1,9 +1,9 @@
 import { userConstants } from '../constants';
 import { userService } from '../services';
-import { successAlert, errorAlert, clearAlert } from './alert.actions';
+import { alertActions } from './alert.actions';
 import { history } from '../helpers';
 
-export {
+export const userActions = {
     login,
     register,
     logout
@@ -26,11 +26,12 @@ function login(username, password) {
             console.log(response);
             localStorage.setItem('user', JSON.stringify(user));
             dispatch(success(user));
+            history.push('/');
         })
         .catch(err => {
             console.log(err);
             dispatch(failure(err));
-            dispatch(errorAlert(err));
+            dispatch(alertActions.error(err));
         });
     }
     //console.log(username, password);
@@ -41,7 +42,15 @@ function login(username, password) {
 }
 
 function logout() {
-    // complete this function
+
+    return(dispatch) => {
+        userService.logout();
+            dispatch(_logout);
+        
+        //history.push('/login');
+    }
+
+    function _logout() { return { type: userConstants.LOGOUT } }
 }
 
 function register(user) {
@@ -56,12 +65,13 @@ function register(user) {
         })
         .then((response) => {
             dispatch(success(user));
-            dispatch(successAlert('Registration Successful'));
+            dispatch(alertActions.success('Registration Successful'));
+            history.push('/login');
         })
         .catch(err => {
             console.log(err);
             dispatch(failure(err));
-            dispatch(errorAlert(err));
+            dispatch(alertActions.error(err));
         });
     }
 

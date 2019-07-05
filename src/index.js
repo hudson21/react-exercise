@@ -1,5 +1,4 @@
 import React from 'react';
-import {  withRouter } from 'react-router-dom';
 import { render } from 'react-dom';
 
 //Helpers
@@ -9,28 +8,17 @@ import { store } from './helpers';
 import { configureFakeAPI } from './helpers';
 
 //Redux
-import { Provider, connect } from 'react-redux';
-
-//Reducer
-import rootReducer from './reducers';
-
+import { Provider } from 'react-redux';
 
 //Components
-import  { App }  from './App';
+import App from './App';
 
 configureFakeAPI();
 
-const mapStateToProps = (state) => ({
-    authentication: state.authentication,
-    registration: state.registration,
-    alert: state.alert,
-});
-
-const RootComponent = connect(mapStateToProps, null)(App);
 
 render(
 <Provider store={store}>
-        <RootComponent /> 
+        <App /> 
 </Provider>,
 
 document.getElementById('app')
