@@ -93,10 +93,18 @@ class RegisterPage extends Component {
 
 // complete the below function
 const mapStateToProps = (state) => ({
+    authentication: state.authentication,
     registration: state.registration,
     alert: state.alert,
-})
+});
 
-const ReduxRegister = connect(mapStateToProps, { register })(RegisterPage);
+const mapDispatchToProps = (dispatch) =>{
+    return bindActionCreators(
+    {
+        register
+    },dispatch) 
+}
+
+const ReduxRegister = connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
 
 export { ReduxRegister as TestRegisterPage };

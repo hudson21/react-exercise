@@ -8,6 +8,7 @@ import { alertActions } from './actions';
 import  {HomePage}  from './components/HomePage';
 import  {TestLoginPage}  from './components/LoginPage';
 import  {TestRegisterPage}  from './components/RegisterPage';
+import Notififations from './components/Notifications';
 
 export class App extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ export class App extends Component {
         const { dispatch } = this.props;
         
         history.listen((location, action) => {
+
         });
     }
 
@@ -28,6 +30,7 @@ export class App extends Component {
                     <PrivateRoute exact path="/" component={HomePage}/>
                     <Route path="/login" component={TestLoginPage}/>    
                     <Route path="/register" component={TestRegisterPage}/>
+                    <Route path="/notifications" component={Notififations}/>
                 </Switch>
             </Router>
             

@@ -90,15 +90,13 @@ class LoginPage extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { alert, authentication } = state;
-    return {
-        alert,
-        authentication
-    }
-}
+const mapStateToProps = (state) => ({
+    authentication: state.authentication,
+    registration: state.registration,
+    alert: state.alert,
+});
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = (dispatch) =>{
     return bindActionCreators(
     {
         login
