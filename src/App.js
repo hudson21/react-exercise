@@ -15,7 +15,9 @@ class App extends Component {
     constructor(props) {
         super(props);
         const { dispatch } = this.props;
-        
+    }
+
+    componentDidMount() {
         history.listen((location, action) => { 
             this.props.history.push(location);
         });
