@@ -22,7 +22,6 @@ function error(message) {
 
 function clear() {
     return {
-        type: alertConstants.CLEAR,
-        message: null
+        type: alertConstants.CLEAR
     }
 }

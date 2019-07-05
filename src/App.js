@@ -17,10 +17,12 @@ import Logout from './components/Logout';
 class App extends Component {
     constructor(props) {
         super(props);
-
         const { dispatch } = this.props;
-        
+    }
+
+    componentDidMount() {
         history.listen((location, action) => { 
+            history.push(location);
         });
     }
 
@@ -29,7 +31,7 @@ class App extends Component {
 
         return(
             <Notifications>
-                <Router >
+                <Router>
                     <Switch>
                         <PrivateRoute exact path="/" component={HomePage}/>
                         <Route path="/login" component={TestLoginPage}/>    
@@ -56,7 +58,8 @@ const mapDispatchToProps = (dispatch) =>{
     },dispatch) 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const ReduxApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
+export { ReduxApp };
 
 //HOST=0.0.0.0 PORT=8000 ./node_modules/.bin/react-scripts start (package.json)
