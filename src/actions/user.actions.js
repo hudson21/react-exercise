@@ -45,12 +45,13 @@ function logout() {
 
     return(dispatch) => {
         userService.logout();
-            dispatch(_logout);
+            dispatch({
+                type: userConstants.LOGOUT
+            })
         
         //history.push('/login');
     }
 
-    function _logout() { return { type: userConstants.LOGOUT } }
 }
 
 function register(user) {
