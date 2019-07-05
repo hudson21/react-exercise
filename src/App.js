@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
 import { alertActions, userActions } from './actions';
@@ -28,8 +28,8 @@ class App extends Component {
         const { alert } = this.props;
 
         return(
-            <Notifications >
-                <Router history={history}>
+            <Notifications>
+                <Router >
                     <Switch>
                         <PrivateRoute exact path="/" component={HomePage}/>
                         <Route path="/login" component={TestLoginPage}/>    
