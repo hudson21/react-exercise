@@ -16,10 +16,6 @@ class RegisterPage extends Component {
         submitted: false
     }
 
-    componentWillUnmount() {
-        this.setState({type: '', message: ''});
-    }
-
     handleChange = (e) => {
         const { user } = this.state;
         user[e.target.name] = e.target.value;
