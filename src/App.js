@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Router, Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
-import { alertActions, userActions } from './actions';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 //Components
 import  {HomePage}  from './components/HomePage';
@@ -41,22 +38,6 @@ class App extends Component {
         );
     }
 }
-
-const mapStateToProps = (state) => ({
-    authentication: state.authentication,
-    registration: state.registration,
-    alert: state.alert,
-});
-
-const mapDispatchToProps = (dispatch) =>{
-    return bindActionCreators(
-    {
-        clear: alertActions.clear,
-        logout: userActions.logout,
-    },dispatch) 
-}
-
-App = withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 export { App };
 
