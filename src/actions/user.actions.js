@@ -42,16 +42,10 @@ function login(username, password) {
 }
 
 function logout() {
-
-    return(dispatch) => {
-        userService.logout();
-            dispatch({
-                type: userConstants.LOGOUT
-            })
-        
-        //history.push('/login');
+    userService.logout();
+    return{
+        type: userConstants.LOGOUT
     }
-
 }
 
 function register(user) {
