@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -73,7 +73,7 @@ class RegisterPage extends Component {
                         </div>
                         <div className="form-group">
                             <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button>
-                            <Link to="/login" className="btn btn-link">Cancel</Link>
+                            <Link to="/login" className="btn btn-link" >Cancel</Link>
                         </div>
                     </form>
                 </div>

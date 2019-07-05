@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch, Router} from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
 
@@ -28,12 +28,14 @@ class App extends Component {
 
         return(
             <Notifications>
+                <Router history={history}>
                     <Switch>
                         <PrivateRoute exact path="/" component={HomePage}/>
                         <Route path="/login" component={TestLoginPage}/>    
                         <Route path="/register" component={TestRegisterPage}/>
                         <Route path="/logout" component={Logout}/>
                     </Switch>
+                </Router>
             </Notifications>
         );
     }
