@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 //Actions
 import { login } from '../actions';
@@ -15,7 +16,7 @@ class LoginPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.loggedIn) {
+        if (nextProps.authentication.loggedIn) {
             this.props.history.push('/');
         }
     }
@@ -43,7 +44,7 @@ class LoginPage extends Component {
 
     render() {
         const { username, password, submitted } = this.state;
-        const { type, message } = this.props;
+        const { type, message } = this.props.alert;
 
         return (
             <div className="container">
@@ -90,13 +91,22 @@ class LoginPage extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    loggedIn: state.authentication.loggedIn,
-    type: state.alert.type,
-    message: state.alert.message
-});
+function mapStateToProps(state) {
+    const { alert, authentication } = state;
+    return {
+        alert,
+        authentication
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators(
+    {
+        login
+    },dispatch) 
+}
 
 
-const ReduxLogin = connect(mapStateToProps, { login })(LoginPage);
+const ReduxLogin = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 
 export { ReduxLogin as TestLoginPage };
