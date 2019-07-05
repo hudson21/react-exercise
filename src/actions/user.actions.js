@@ -24,7 +24,7 @@ function login(username, password) {
         })
         .then((response) => {
             console.log(response);
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('user', response.json);
             dispatch(success(user));
             history.push('/');
         })
