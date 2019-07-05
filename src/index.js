@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, withRouter  } from 'react-router-dom';
+import { BrowserRouter as Router, withRouter  } from 'react-router-dom';
 
 
 //Actions
@@ -40,9 +40,9 @@ const RootApp = withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 render(
 <Provider store={store}>
-    <BrowserRouter>
+    <Router>
         <RootApp/>
-    </BrowserRouter>  
+    </Router>  
 </Provider>,
 
 document.getElementById('app')
