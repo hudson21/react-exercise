@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 //Helpers
 import { store } from './helpers';
@@ -18,7 +19,9 @@ configureFakeAPI();
 
 render(
 <Provider store={store}>
-        <App /> 
+    <Router>
+        <App/>
+    </Router>  
 </Provider>,
 
 document.getElementById('app')
