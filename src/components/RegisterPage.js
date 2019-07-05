@@ -96,6 +96,6 @@ const mapDispatchToProps = (dispatch) =>{
     },dispatch) 
 }
 
-const ReduxRegister = connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
+RegisterPage = connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
 
-export { ReduxRegister as TestRegisterPage };
+export { RegisterPage as TestRegisterPage };

@@ -94,6 +94,6 @@ const mapDispatchToProps = (dispatch) =>{
 }
 
 
-const ReduxLogin = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+LoginPage = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 
-export { ReduxLogin as TestLoginPage };
+export { LoginPage as TestLoginPage };
